@@ -2,79 +2,84 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Bot Tu Tiên</title>
+<title>Game Tu Tiên</title>
 
 <style>
 body{
-    font-family: Arial;
-    background: #0f172a;
-    color: white;
-    text-align: center;
-}
-
-header{
-    padding:40px;
+    background:#0f172a;
+    color:white;
+    font-family:Arial;
+    text-align:center;
 }
 
 h1{
-    font-size:50px;
     color:#38bdf8;
 }
 
 .box{
     background:#1e293b;
-    margin:20px auto;
-    padding:20px;
-    width:70%;
+    padding:30px;
+    margin:40px auto;
+    width:300px;
     border-radius:10px;
 }
 
 button{
     padding:12px 25px;
-    border:none;
-    background:#38bdf8;
-    color:black;
     font-size:18px;
+    background:#38bdf8;
+    border:none;
     border-radius:6px;
     cursor:pointer;
 }
 </style>
-
 </head>
 
 <body>
 
-<header>
-<h1>⚔️ BOT TU TIÊN ⚔️</h1>
-<p>Trải nghiệm thế giới tu tiên ngay trong Discord</p>
-</header>
+<h1>⚔️ GAME TU TIÊN ⚔️</h1>
 
 <div class="box">
-<h2>🔥 Tính năng</h2>
-<p>• Tu luyện tăng cảnh giới</p>
-<p>• Thu thập linh thạch</p>
-<p>• PvP với người chơi khác</p>
-<p>• Boss và bí cảnh</p>
+
+<p>Cảnh giới:</p>
+<h2 id="rank">Phàm Nhân</h2>
+
+<p>Linh lực:</p>
+<h3 id="power">0</h3>
+
+<button onclick="train()">Tu Luyện</button>
+
 </div>
 
-<div class="box">
-<h2>⚡ Lệnh cơ bản</h2>
-<p>/tu-luyen</p>
-<p>/hanh-tau</p>
-<p>/boss</p>
-<p>/canh-gioi</p>
-</div>
+<script>
 
-<div class="box">
-<h2>🚀 Mời bot</h2>
-<button onclick="window.location.href='LINK_BOT'">
-Thêm bot vào server
-</button>
-</div>
+let power = 0
 
-<footer style="margin-top:40px">
-<p>© 2026 Bot Tu Tiên</p>
-</footer>
+function train(){
+
+power += 10
+
+document.getElementById("power").innerText = power
+
+if(power >= 50){
+document.getElementById("rank").innerText="Luyện Khí"
+}
+
+if(power >= 150){
+document.getElementById("rank").innerText="Trúc Cơ"
+}
+
+if(power >= 300){
+document.getElementById("rank").innerText="Kim Đan"
+}
+
+if(power >= 600){
+document.getElementById("rank").innerText="Nguyên Anh"
+}
+
+}
+
+</script>
 
 </body>
 </html>
