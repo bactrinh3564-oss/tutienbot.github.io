@@ -5,39 +5,43 @@
 <title>Game Tu Tiên</title>
 
 <style>
+
 body{
-    background:#0f172a;
-    color:white;
-    font-family:Arial;
-    text-align:center;
+background:#0f172a;
+color:white;
+font-family:Arial;
+text-align:center;
 }
 
 h1{
-    color:#38bdf8;
+color:#38bdf8;
 }
 
 .box{
-    background:#1e293b;
-    padding:30px;
-    margin:40px auto;
-    width:300px;
-    border-radius:10px;
+background:#1e293b;
+padding:25px;
+margin:20px auto;
+width:320px;
+border-radius:10px;
 }
 
 button{
-    padding:12px 25px;
-    font-size:18px;
-    background:#38bdf8;
-    border:none;
-    border-radius:6px;
-    cursor:pointer;
+padding:10px 20px;
+margin:5px;
+font-size:16px;
+background:#38bdf8;
+border:none;
+border-radius:6px;
+cursor:pointer;
 }
+
 </style>
+
 </head>
 
 <body>
 
-<h1>⚔️ GAME TU TIÊN ⚔️</h1>
+<h1>⚔️ Game Tu Tiên ⚔️</h1>
 
 <div class="box">
 
@@ -47,39 +51,81 @@ button{
 <p>Linh lực:</p>
 <h3 id="power">0</h3>
 
+<p>Linh thạch:</p>
+<h3 id="stone">0</h3>
+
 <button onclick="train()">Tu Luyện</button>
+<button onclick="boss()">Đánh Boss</button>
 
 </div>
 
 <script>
 
-let power = 0
+let power = localStorage.getItem("power") || 0
+let stone = localStorage.getItem("stone") || 0
+
+power = parseInt(power)
+stone = parseInt(stone)
+
+update()
 
 function train(){
 
 power += 10
+save()
+update()
+
+}
+
+function boss(){
+
+let win = Math.random()
+
+if(win > 0.4){
+
+let reward = Math.floor(Math.random()*50)+20
+
+stone += reward
+
+alert("Bạn thắng boss và nhận "+reward+" linh thạch!")
+
+}else{
+
+alert("Boss đánh bạn trọng thương!")
+
+}
+
+save()
+update()
+
+}
+
+function update(){
 
 document.getElementById("power").innerText = power
+document.getElementById("stone").innerText = stone
 
-if(power >= 50){
-document.getElementById("rank").innerText="Luyện Khí"
+let rank = "Phàm Nhân"
+
+if(power >= 100) rank = "Luyện Khí"
+if(power >= 300) rank = "Trúc Cơ"
+if(power >= 700) rank = "Kim Đan"
+if(power >= 1500) rank = "Nguyên Anh"
+if(power >= 3000) rank = "Hóa Thần"
+
+document.getElementById("rank").innerText = rank
+
 }
 
-if(power >= 150){
-document.getElementById("rank").innerText="Trúc Cơ"
-}
+function save(){
 
-if(power >= 300){
-document.getElementById("rank").innerText="Kim Đan"
-}
-
-if(power >= 600){
-document.getElementById("rank").innerText="Nguyên Anh"
-}
+localStorage.setItem("power",power)
+localStorage.setItem("stone",stone)
 
 }
 
 </script>
 
 </body>
+
 </html>
